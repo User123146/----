@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvasEx</title>
+</head>
+<body>
+    <h3> 3개의 캔버스 만들기</h3>
+    <canvas id ="canvas1" width ="150" height="100"
+    style="background-color: lightblue;"></canvas>
+    <canvas id ="canvas2" width ="150" height="100"
+    style="background-color: pink;"></canvas><br>
+    <canvas id ="canvas3" width ="300" height="500"
+    style="background-color: yellow;"></canvas>
+
+    <script>
+        var can3 = document.getElementById("canvas3");
+        var context3=can3.getContext("2d");
+        context3.beginPath();
+        context3.rect(30,30,50,50);
+        context3.strokeStyle="blue";
+        context3.stroke();
+
+        
+        var can2 = document.getElementById("canvas2");
+        var context2=can2.getContext("2d");
+        context2.beginPath();
+        context2.rect(30,30,50,50);
+        context2.strokeStyle="blue";
+        context2.stroke();
+        
+        
+        var can1 = document.getElementById("canvas1");
+        var context1=can1.getContext("2d");
+        context1.beginPath();
+        context1.rect(30,30,50,50);
+        context1.strokeStyle="blue";
+        context1.stroke();
+ 
+        var w =can3.width;
+        var h=can3.height;
+ /*
+       alert("캔버스는" + w + "x" + h);
+*/
+        context3.font = "30px Gothic";
+        context3.fillStyle="green";
+        context3.fillText("KIM HYUN JUNG",0,100);
+
+        context3.font = "20px arial";
+        context3.strokeStyle="red";
+        context3.strokeText("KIM HYUN JUNG",0,150);
+
+        context2.beginPath();
+        context2.rect(70,70,50,50);
+        context2.strokeStyle="blue";
+        context2.fillStyle="red";
+        context2.fill();
+        context2.stroke();
+        
+        // 점으로 도형그리기  
+        //context3.beginPath(); 새로 만들기
+        context3.moveTo(120,20); // 좌표로 이동
+        context3.lineTo(20,50); // 입력 좌표로 선을 그린다.
+        context3.lineTo(150,120);
+        context3.closePath(); // 초기 좌표랑 선을 잇는다.
+        context3.stroke();
+    </script>
+</body>
+</html>

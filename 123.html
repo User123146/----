@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #fff;
+        }
+        h1 {
+            text-align: center;
+            color: #ff4081;
+            margin: 20px 0;
+        }
+        #payment_container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #1f1f1f;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #333;
+            text-align: left;
+        }
+        th {
+            background-color: #292929;
+            color: #ff4081;
+        }
+        td img {
+            width: 100px;
+            border-radius: 10px;
+        }
+        #address input[type="text"],
+        #address button,
+        #payment input[type="radio"] {
+            margin: 5px 0;
+        }
+        #address button,
+        #payment button {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        #address button:hover,
+        #payment button:hover {
+            background-color: #e53570;
+        }
+        #agreement_checkbox ul {
+            padding: 0;
+            margin: 0;
+        }
+        #agreement_checkbox ul li {
+            list-style: none;
+            margin: 10px 0;
+        }
+        #agreement_checkbox h2 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #ff4081;
+        }
+        input[type="text"],
+        button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #292929;
+            color: white;
+        }
+        input[type="text"]::placeholder {
+            color: #bbb;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        #total {
+            text-align: right;
+            font-size: 1.2em;
+            color: #ff4081;
+        }
+    </style>
+</head>
+<body>
+    <div><h1>주문결제</h1></div>
+    <div id="payment_container">
+        <div id="address">
+            <table>
+                <tr>
+                    <td>배송지 선택</td>
+                    <td>
+                        <input type="text" name="address_list" list="address_data" placeholder="배송지를 선택해주세요">
+                        <datalist id="address_data">
+                            <option value="최근배송지">최근배송지</option>
+                            <option value="집">집</option>
+                            <option value="직장">직장</option>
+                            <option value="학교">학교</option>
+                        </datalist>
+                        <button id="add_address">+</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>이름</td>
+                    <td>홍길동</td>
+                </tr>
+                <tr>
+                    <td>연락처</td>
+                    <td>010-0000-0000</td>
+                </tr>
+                <tr>
+                    <td>주소</td>
+                    <td>서울특별시 구로구 고척동</td>
+                </tr>
+                <tr>
+                    <td>배송 요청사항</td>
+                    <td>
+                        <input type="text" name="delivery_list" list="delivery_data" value="문앞에 놓아주세요">
+                        <datalist id="delivery_data">
+                            <option value="문앞에 놓아주세요">문앞에 놓아주세요</option>
+                            <option value="부재시 경비실에 맡겨주세요">부재시 경비실에 맡겨주세요</option>
+                            <option value="부재시 연락주세요">부재시 연락주세요</option>
+                            <option value="택배함에 놓아주세요">택배함에 놓아주세요</option>
+                        </datalist>
+                        <button id="add_delivery">+</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="item">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">상품</th>
+                        <th>수량</th>
+                        <th>가격</th>
+                        <th>할인금액</th>
+                        <th>배송비</th>
+                        <th>주문총액</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="src/img/search_icon.jpg" alt="상품 이미지"></td>
+                        <td>상품명<br>상품 옵션</td>
+                        <td>1</td>
+                        <td>100,000 원</td>
+                        <td>-50,000 원</td>
+                        <td>5,000 원</td>
+                        <td>55,000 원</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"></td>
+                        <td>가격</td>
+                        <td></td>
+                        <td>100,000 원</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"></td>
+                        <td>할인금액</td>
+                        <td></td>
+                        <td>-50,000 원</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"></td>
+                        <td>배송비</td>
+                        <td></td>
+                        <td>5,000 원</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"></td>
+                        <td>총액</td>
+                        <td></td>
+                        <td id="total">55,000 원</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="payment">
+            <table>
+                <tr>
+                    <td>결제방법</td>
+                    <td>
+                        <input type="radio" name="payment_radio" value="card"> 신용카드
+                        <input type="radio" name="payment_radio" value="bank_transfer"> 무통장입금
+                        <input type="radio" name="payment_radio" value="account_transfer"> 실시간계좌이체
+                        <br>
+                        <input type="radio" name="payment_radio" value="naver_pay"> NAVER Pay
+                        <input type="radio" name="payment_radio" value="kakao_pay"> kakao Pay
+                        <input type="radio" name="payment_radio" value="samsung_pay"> SAMSUNG Pay
+                        <input type="radio" name="payment_radio" value="toss_pay"> toss pay
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="agreement_checkbox">
+            <h2>약관동의</h2>
+            <ul>
+                <li><input type="checkbox" name="agreement_checkbox"> 개인정보 3자 제공에 동의합니다</li>
+                <li><input type="checkbox" name="agreement_checkbox"> 결제대행서비스 이용약관에 동의합니다.</li>
+                <li><input type="checkbox" name="agreement_checkbox"> 제품의 사용조건과 자사의 취소, 환불규정에 동의합니다.</li>
+            </ul>
+        </div>
+        <div id="payment_button" style="text-align:center;">
+            <button type="button">결제하기</button>
+        </div>
+    </div>
+</body>
+</html>
